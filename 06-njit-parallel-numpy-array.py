@@ -6,7 +6,7 @@ import numba as nb
 WIDTH = 600 
 MAX_ITER = 6000
 
-@nb.njit(parallel = True)
+@nb.njit(parallel = True, cache=True, fastmath=True)
 def mandelbrot(bbox, width, max_iter):     
     pixels = np.zeros((width, width, 3), dtype=np.uint8)
     for y in nb.prange(width):

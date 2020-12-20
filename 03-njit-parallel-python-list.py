@@ -5,9 +5,9 @@ import numba as nb
 WIDTH = 600 
 MAX_ITER = 6000
 
-@nb.njit(parallel = True)
+@nb.njit(parallel = True, cache=True, fastmath=True)
 def mandelbrot(bbox, width, max_iter):     
-    pixels = [[(0, 0, 0) for j in range(width)] for i in range(width)]
+    pixels = [[(0, 0, 0) for _ in range(width)] for _ in range(width)]
     for y in nb.prange(width):
         for x in range(width):
             c0 = complex(bbox[0] + (bbox[2]-bbox[0])*x/width, 

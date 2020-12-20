@@ -2,10 +2,10 @@ import math
 from canvas import view_mandelbrot
 import numba as nb
 
-WIDTH = 600 
+WIDTH = 600
 MAX_ITER = 1000
 
-@nb.njit
+@nb.njit(cache=True, fastmath=True)
 def mandelbrot(bbox, width, max_iter):     
     pixels = [[(0, 0, 0) for j in range(width)] for i in range(width)]
     for y in range(width):
